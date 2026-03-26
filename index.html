@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>講習生の実績 | けだまモテさせ写真家</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fdf9f4;
+      --bg2: #fff8f0;
+      --card: #ffffff;
+      --border: #e8ddd0;
+      --accent: #d4821a;
+      --accent-light: #f5a623;
+      --accent-pale: #fff3e0;
+      --text: #2d2010;
+      --text-muted: #8a7260;
+      --red: #c0392b;
+      --red-pale: #fff5f5;
+      --green: #27796a;
+      --shadow: 0 2px 16px rgba(180,120,40,0.10);
+      --shadow-hover: 0 6px 28px rgba(180,120,40,0.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* HEADER */
+    .site-header {
+      background: linear-gradient(135deg, #fffbf5 0%, #fff3e0 100%);
+      border-bottom: 2px solid var(--accent-light);
+      padding: 18px 24px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(212,130,26,0.12);
+    }
+    .site-header h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(13px, 3vw, 17px);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(150deg, #fff8ee 0%, #fffdf9 60%, #fff0e0 100%);
+      padding: 56px 24px 48px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.13) 0%, transparent 70%);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,130,26,0.10) 0%, transparent 70%);
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--accent-light);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 5vw, 30px);
+      font-weight: 700;
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .hero h2 em {
+      font-style: normal;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-light);
+    }
+    .hero-sub {
+      color: var(--text-muted);
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+    .hero-line {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, var(--accent-light), transparent);
+      border-radius: 2px;
+      margin: 20px auto 0;
+    }
+
+    /* WRAPPER */
+    .page-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* SECTION BADGE */
+    .section-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 52px 0 0;
+    }
+    .section-badge-bar {
+      flex: 1; height: 2px;
+      background: linear-gradient(90deg, var(--accent-light), transparent);
+      border-radius: 2px;
+    }
+    .section-badge-bar.right {
+      background: linear-gradient(270deg, var(--accent-light), transparent);
+    }
+    .section-badge-text {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(13px, 3.5vw, 16px);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 8px 22px;
+      border-radius: 24px;
+      white-space: nowrap;
+      box-shadow: 0 3px 12px rgba(212,130,26,0.28);
+    }
+
+    /* YOUTUBE */
+    .youtube-section { padding: 28px 0 0; }
+    .youtube-item { margin-bottom: 40px; }
+    .youtube-label {
+      background: linear-gradient(135deg, var(--accent-pale), #fff8ee);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      margin-bottom: 10px;
+      line-height: 1.6;
+      box-shadow: var(--shadow);
+    }
+    .youtube-embed {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0; overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .youtube-embed iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 44px 0;
+    }
+
+    /* NOTE */
+    .note-block {
+      background: linear-gradient(135deg, #fffbf0, #fff8e6);
+      border: 1px solid #f0d080;
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #a07010;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(200,160,30,0.10);
+    }
+
+    /* SCREENSHOT */
+    .screenshot-section { padding: 0 0 40px; }
+    .screenshot-item { margin-bottom: 32px; }
+    .screenshot-label {
+      background: linear-gradient(135deg, var(--accent-pale), #fffbf5);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 8px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+      line-height: 1.6;
+      box-shadow: 0 2px 8px rgba(212,130,26,0.08);
+    }
+    .screenshot-img {
+      width: 100%; height: auto;
+      display: block;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .screenshot-img:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    /* BULK */
+    .bulk-label {
+      background: linear-gradient(135deg, #fff3e0, #ffe8c0);
+      border: 2px solid var(--accent-light);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 3.5vw, 16px);
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    .bulk-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .bulk-grid .screenshot-img { border-radius: 8px; }
+
+    /* SPECIAL */
+    .special-label {
+      background: linear-gradient(135deg, var(--red-pale), #fff0f0);
+      border-left: 4px solid var(--red);
+      border-radius: 0 10px 10px 0;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red);
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+      line-height: 1.6;
+      box-shadow: 0 2px 10px rgba(192,57,43,0.09);
+    }
+
+    /* CLOSING */
+    .closing-section {
+      background: linear-gradient(135deg, #fffbf5, var(--bg2));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 44px 24px;
+      text-align: center;
+    }
+    .closing-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(16px, 4vw, 20px);
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      line-height: 2;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(150deg, #fff8ee 0%, #fff3e0 50%, #fffbf5 100%);
+      padding: 64px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-label {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 4px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .cta-section h3 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(18px, 4.5vw, 24px);
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 32px;
+      letter-spacing: 0.04em;
+    }
+    .cta-arrow {
+      display: block;
+      font-size: 24px;
+      color: var(--accent-light);
+      margin-bottom: 14px;
+      animation: bounce 1.4s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(7px); }
+    }
+    .cta-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #e8a020, #f5c040);
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 3.5vw, 17px);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      padding: 18px 44px;
+      border-radius: 50px;
+      box-shadow: 0 4px 22px rgba(232,160,32,0.38);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(232,160,32,0.50);
+    }
+    .cta-btn:active { transform: translateY(0); }
+
+    /* FOOTER */
+    .site-footer {
+      background: #fdf6ec;
+      border-top: 1px solid var(--border);
+      padding: 22px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* FADE IN */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>けだまモテさせ写真家 — 講習生の実績</h1>
+  </header>
+
+  <section class="hero">
+    <span class="hero-eyebrow">Results</span>
+    <h2>ここでは<em>講習生の実績</em>を<br>軽く紹介していきたいと思います。</h2>
+    <p class="hero-sub">恋愛講習を通じて変わった、リアルな成果報告</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <main>
+    <div class="page-wrapper">
+
+      <div class="section-badge fade-in">
+        <div class="section-badge-bar"></div>
+        <div class="section-badge-text">🎥 対談動画</div>
+        <div class="section-badge-bar right"></div>
+      </div>
+
+      <section class="youtube-section">
+
+        <div class="youtube-item fade-in">
+          <div class="youtube-label">童貞から別れても離れたくない男に　20代後半 Sさん</div>
+          <div class="youtube-embed">
+            <iframe src="https://www.youtube.com/embed/8HSddOZu6yc"
+              title="童貞から別れても離れたくない男に 20代後半Sさん"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="youtube-item fade-in">
+          <div class="youtube-label">30代から理想の女性と会えるようになった　37歳 Kさん</div>
+          <div class="youtube-embed">
+            <iframe src="https://www.youtube.com/embed/EtkAOez6n6U"
+              title="30代から理想の女性と会えるようになった 37歳Kさん"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="youtube-item fade-in">
+          <div class="youtube-label">経験0→5人＆人生初彼女もできた　20代後半 Yさん</div>
+          <div class="youtube-embed">
+            <iframe src="https://www.youtube.com/embed/E9V9hM5k5e0"
+              title="経験0→5人&人生初彼女もできた 20代後半Yさん"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </div>
+
+      </section>
+
+      <hr class="section-divider">
+
+      <div class="section-badge fade-in">
+        <div class="section-badge-bar"></div>
+        <div class="section-badge-text">📱 LINEスクショ</div>
+        <div class="section-badge-bar right"></div>
+      </div>
+
+      <div class="note-block fade-in" style="margin-top:24px;">
+        ※「即」＝即日SEXの略です
+      </div>
+
+      <section class="screenshot-section">
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">初日で500マッチ　20代後半 Sさん</div>
+          <img class="screenshot-img" src="https://imgur.com/V30rEFg.jpg" alt="初日で500マッチ 20代後半Sさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">持病と戦いながらも彼女2人GET　30歳後半 Hさん</div>
+          <img class="screenshot-img" src="https://imgur.com/cy9xjlt.jpg" alt="持病と戦いながらも彼女2人GET 30歳後半Hさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">27年彼女なしから素敵なパートナーと出会えた　27歳 Aさん</div>
+          <img class="screenshot-img" src="https://imgur.com/et02WeW.jpg" alt="27年彼女なしから素敵なパートナーと出会えた 27歳Aさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">初めてのラブホテルで彼女GET　20代後半 Kさん</div>
+          <img class="screenshot-img" src="https://imgur.com/jfF4v37.jpg" alt="初めてのラブホテルで彼女GET 20代後半Kさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">初彼女と同時に童貞卒業　次の課題へ挑む　20代 Sさん</div>
+          <img class="screenshot-img" src="https://imgur.com/q9pdtDs.jpg" alt="初彼女と同時に童貞卒業 20代Sさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">アラフォーで年間40人抱いた　30代後半 Yさん</div>
+          <img class="screenshot-img" src="https://imgur.com/YTya4Nj.jpg" alt="アラフォーで年間40人抱いた 30代後半Yさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">初めての緊張でも彼女が出来た　20代後半 Rさん</div>
+          <img class="screenshot-img" src="https://imgur.com/sQj7FUq.jpg" alt="初めての緊張でも彼女が出来た 20代後半Rさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">韓国系に寄せて遊びまくる　20代後半 Kさん</div>
+          <img class="screenshot-img" src="https://imgur.com/MvwzjdQ.jpg" alt="韓国系に寄せて遊びまくる 20代後半Kさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">魅力だけでホテルへ　20代後半 Sさん</div>
+          <img class="screenshot-img" src="https://imgur.com/152KQFs.jpg" alt="魅力だけでホテルへ 20代後半Sさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">アドバイスでホテルへ行き童貞卒業　20代後半 Yさん</div>
+          <img class="screenshot-img" src="https://imgur.com/Qor3fMT.jpg" alt="アドバイスでホテルへ行き童貞卒業 20代後半Yさん">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <div class="screenshot-label">30代 Mさん</div>
+          <img class="screenshot-img" src="https://imgur.com/FDJUt23.jpg" alt="30代Mさん">
+        </div>
+
+        <!-- 12〜29枚目 -->
+        <div class="bulk-label fade-in">他にもたくさんの成果報告</div>
+
+        <div class="bulk-grid">
+          <img class="screenshot-img fade-in" src="https://imgur.com/nPLTjVr.jpg" alt="成果報告 12">
+          <img class="screenshot-img fade-in" src="https://imgur.com/UXRaGd9.jpg" alt="成果報告 13">
+          <img class="screenshot-img fade-in" src="https://imgur.com/paPgb7K.jpg" alt="成果報告 14">
+          <img class="screenshot-img fade-in" src="https://imgur.com/RzNNiAN.jpg" alt="成果報告 15">
+          <img class="screenshot-img fade-in" src="https://imgur.com/450Lsaw.jpg" alt="成果報告 16">
+          <img class="screenshot-img fade-in" src="https://imgur.com/cL17JZf.jpg" alt="成果報告 17">
+          <img class="screenshot-img fade-in" src="https://imgur.com/6QwrRTX.jpg" alt="成果報告 18">
+          <img class="screenshot-img fade-in" src="https://imgur.com/5jbrp8F.jpg" alt="成果報告 19">
+          <img class="screenshot-img fade-in" src="https://imgur.com/5NgyKG2.jpg" alt="成果報告 20">
+          <img class="screenshot-img fade-in" src="https://imgur.com/rVvTwMp.jpg" alt="成果報告 21">
+          <img class="screenshot-img fade-in" src="https://imgur.com/SZvkkB7.jpg" alt="成果報告 22">
+          <img class="screenshot-img fade-in" src="https://imgur.com/T6Vuakv.jpg" alt="成果報告 23">
+          <img class="screenshot-img fade-in" src="https://imgur.com/KAaziGB.jpg" alt="成果報告 24">
+          <img class="screenshot-img fade-in" src="https://imgur.com/1xFWnSb.jpg" alt="成果報告 25">
+          <img class="screenshot-img fade-in" src="https://imgur.com/Xyh5hIY.jpg" alt="成果報告 26">
+          <img class="screenshot-img fade-in" src="https://imgur.com/ltw0LZe.jpg" alt="成果報告 27">
+          <img class="screenshot-img fade-in" src="https://imgur.com/IH75Pvx.jpg" alt="成果報告 28">
+          <img class="screenshot-img fade-in" src="https://imgur.com/2QfcY6g.jpg" alt="成果報告 29">
+        </div>
+
+        <!-- 30〜31枚目 -->
+        <div class="special-label fade-in">🔥 たぬかなに取り上げられバズってるあの人も実は...</div>
+
+        <div class="screenshot-item fade-in" style="margin-bottom:16px;">
+          <img class="screenshot-img" src="https://imgur.com/51lsF8E.jpg" alt="30枚目">
+        </div>
+
+        <div class="screenshot-item fade-in">
+          <img class="screenshot-img" src="https://imgur.com/lsmTYkh.jpg" alt="31枚目">
+        </div>
+
+      </section>
+
+    </div><!-- /page-wrapper -->
+
+    <div class="closing-section">
+      <p class="closing-text fade-in">ざっくりですが講習生の実績はこんな感じです。</p>
+    </div>
+
+    <section class="cta-section">
+      <span class="cta-label">CONTACT</span>
+      <h3>あなたも変わりたいですか？<br>まずはお問い合わせください。</h3>
+      <p>個別相談・お申込みはこちらから受け付けています</p>
+      <span class="cta-arrow">▼</span>
+      <a class="cta-btn"
+         href="https://docs.google.com/forms/d/e/1FAIpQLSdgJsHcrS_7YgDPAyNNEnLqyL0CxzFgMuJr4esCH4776RatHg/viewform?usp=header"
+         target="_blank" rel="noopener noreferrer">
+        📩　お問い合わせフォームはこちら
+      </a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© けだまモテさせ写真家</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
